@@ -8,7 +8,7 @@ function setTodos() {
   fetch("./data.json")
     .then(response => response.json())
     .then(data => {
-      if (localStorage.todos) {
+      if (!localStorage.todos) {
         localStorage.todos = JSON.stringify(data);
         location.reload();
       } else {
@@ -20,6 +20,18 @@ function setTodos() {
     });
 }
 
+function updateTodo(element, todo, todos, event) {
+  if (event.keyCode === 13) {
+    const new_todo = todo;
+    const new_input = document.getElementById("input");
+    new_todo.title = new_input.value;
+
+    todos.splice(todos.indexOf(todo), 1, new_todo);
+    localStorage.todos = JSON.stringify(todos);
+    location.reload();
+  }
+}
+
 function deleteTodo(todo, todos, e) {
   todos.splice(todos.indexOf(todo), 1);
   localStorage.todos = JSON.stringify(todos);
@@ -27,16 +39,11 @@ function deleteTodo(todo, todos, e) {
 }
 
 function editTodo(element, input, todo, todos) {
-  //   console.log(todo);
-  //   console.log(todos);
   input.setAttribute("style", 'display: ""');
   element.setAttribute("style", "display: none");
-
-  todo.title = input.value;
-  todos.splice(todos.indexOf(todo), 1, todo);
 }
 
-function cancelEdit(element, input) {
+function cancelTodo(element, input) {
   element.setAttribute("style", 'display: ""');
   input.setAttribute("style", "display: none");
 }
@@ -55,17 +62,19 @@ function cancelEdit(element, input) {
       li.setAttribute("class", "list-item");
       li.textContent = todo.title;
 
+      input.setAttribute("id", "input");
       input.setAttribute("class", "input");
       input.setAttribute("style", "display: none");
 
-      input.addEventListener("blur", cancelEdit.bind(null, li, input));
+      input.addEventListener("blur", cancelTodo.bind(null, li, input));
+      input.addEventListener(
+        "keypress",
+        updateTodo.bind(null, li, todo, todos)
+      );
 
       input.value = todo.title;
 
-      li.addEventListener(
-        "dblclick",
-        editTodo.bind(null, li, input, todo, todos)
-      );
+      li.addEventListener("dblclick", editTodo.bind(null, li, input));
 
       btn_delete.textContent = "Delete Me";
       btn_delete.setAttribute(
