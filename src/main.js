@@ -31,6 +31,14 @@ function editTodo(element, input, todo, todos) {
   //   console.log(todos);
   input.setAttribute("style", 'display: ""');
   element.setAttribute("style", "display: none");
+
+  todo.title = input.value;
+  todos.splice(todos.indexOf(todo), 1, todo);
+}
+
+function cancelEdit(element, input) {
+  element.setAttribute("style", 'display: ""');
+  input.setAttribute("style", "display: none");
 }
 
 (function() {
@@ -49,6 +57,9 @@ function editTodo(element, input, todo, todos) {
 
       input.setAttribute("class", "input");
       input.setAttribute("style", "display: none");
+
+      input.addEventListener("blur", cancelEdit.bind(null, li, input));
+
       input.value = todo.title;
 
       li.addEventListener(
