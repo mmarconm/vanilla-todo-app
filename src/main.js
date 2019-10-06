@@ -19,7 +19,7 @@ function setTodos() {
       console.log(err);
     });
 }
-
+// Functions to edit, cancel, update, and get all todos
 function updateTodo(element, todo, todos, event) {
   if (event.keyCode === 13) {
     const new_todo = todo;
@@ -32,7 +32,7 @@ function updateTodo(element, todo, todos, event) {
   }
 }
 
-function deleteTodo(todo, todos, e) {
+function deleteTodo(todo, todos) {
   todos.splice(todos.indexOf(todo), 1);
   localStorage.todos = JSON.stringify(todos);
   location.reload();
@@ -47,6 +47,8 @@ function cancelTodo(element, input) {
   element.setAttribute("style", 'display: ""');
   input.setAttribute("style", "display: none");
 }
+
+// End of functions
 
 (function() {
   if (localStorage.todos) {
