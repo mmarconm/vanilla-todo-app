@@ -8,6 +8,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css"
     />
+    <link
+      href="https://fonts.googleapis.com/css?family=Inconsolata&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
     <title>Todo App</title>
   </head>
   <body>
@@ -52,18 +57,25 @@
       <article class="message">
         <div class="message-header">
           <p>Vanilla Js</p>
-          <button class="button is-danger" id="set_todos">Get Todos</button>
+          <button class="button is-success is-large" id="set_todos">
+            Buscar Dados
+          </button>
         </div>
         <div class="message-body">
           Click no botao para iniciar a nova lista, as modificacoes e todos os
-          items sao salvos no localStorage
+          items sao salvos no localStorage.
+          <br />
+          para modificar um item apenas de duplo clique em cima, para cancelar
+          apenas click fora ou use tab.
+          <br />
+          para salvar uma modificacao pressione enter.
         </div>
       </article>
       <br />
       <div class="">
         <article class="message">
           <div class="message-header">
-            <p>All Todos listed</p>
+            <p>Lista de Produtos</p>
           </div>
         </article>
         <ul id="ul" class="list is-hoverable"></ul>

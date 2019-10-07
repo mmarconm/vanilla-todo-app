@@ -1,54 +1,8 @@
+const events = require("./modules/events");
+
 const set_todos = document.getElementById("set_todos");
 
-// Event listenners
-set_todos.addEventListener("click", setTodos);
-
-// Functions
-function setTodos() {
-  fetch("./data.json")
-    .then(response => response.json())
-    .then(data => {
-      if (!localStorage.todos) {
-        localStorage.todos = JSON.stringify(data);
-        location.reload();
-      } else {
-        localStorage.clear();
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-// Functions to edit, cancel, update, and get all todos
-function updateTodo(element, todo, todos, event) {
-  if (event.keyCode === 13) {
-    const new_todo = todo;
-    const new_input = document.getElementById("input");
-    new_todo.title = new_input.value;
-
-    todos.splice(todos.indexOf(todo), 1, new_todo);
-    localStorage.todos = JSON.stringify(todos);
-    location.reload();
-  }
-}
-
-function deleteTodo(todo, todos) {
-  todos.splice(todos.indexOf(todo), 1);
-  localStorage.todos = JSON.stringify(todos);
-  location.reload();
-}
-
-function editTodo(element, input, todo, todos) {
-  input.setAttribute("style", 'display: ""');
-  element.setAttribute("style", "display: none");
-}
-
-function cancelTodo(element, input) {
-  element.setAttribute("style", 'display: ""');
-  input.setAttribute("style", "display: none");
-}
-
-// End of functions
+set_todos.addEventListener("click", events.setTodos);
 
 (function() {
   if (localStorage.todos) {
@@ -57,33 +11,34 @@ function cancelTodo(element, input) {
     const todos = JSON.parse(localStorage.todos);
 
     for (const todo of todos) {
+      // create all elements
       const li = document.createElement("li");
       const btn_delete = document.createElement("button");
       const input = document.createElement("input");
 
-      li.setAttribute("class", "list-item");
+      li.className = "list-item";
       li.textContent = todo.title;
+      li.addEventListener(
+        "dblclick",
+        events.editTodo.bind(null, li, input, todo, todos)
+      );
 
-      input.setAttribute("id", "input");
-      input.setAttribute("class", "input");
-      input.setAttribute("style", "display: none");
-
-      input.addEventListener("blur", cancelTodo.bind(null, li, input));
+      input.id = "input";
+      input.className = "input";
+      input.style.display = "none";
+      input.addEventListener("blur", events.cancelTodo.bind(null, li, input));
       input.addEventListener(
         "keypress",
-        updateTodo.bind(null, li, todo, todos)
+        events.updateTodo.bind(null, li, input, todo, todos)
       );
-
       input.value = todo.title;
 
-      li.addEventListener("dblclick", editTodo.bind(null, li, input));
-
-      btn_delete.textContent = "Delete Me";
-      btn_delete.setAttribute(
-        "class",
-        "button is-danger is-small is-pulled-right"
+      btn_delete.textContent = "Remover";
+      btn_delete.className = "button is-danger is-small is-pulled-right margin";
+      btn_delete.addEventListener(
+        "click",
+        events.deleteTodo.bind(null, todo, todos)
       );
-      btn_delete.addEventListener("click", deleteTodo.bind(null, todo, todos));
 
       li.appendChild(btn_delete);
       ul.appendChild(input);
