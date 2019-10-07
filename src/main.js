@@ -24,7 +24,7 @@ set_todos.addEventListener("click", events.setTodos);
       );
 
       input.id = "input";
-      input.className = "input";
+      input.className = "input is-success is-loading";
       input.style.display = "none";
       input.addEventListener("blur", events.cancelTodo.bind(null, li, input));
       input.addEventListener(

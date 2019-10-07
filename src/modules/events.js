@@ -18,11 +18,13 @@ function updateTodo(element, input, todo, todos, event) {
   if (event.keyCode === 13) {
     const new_todo = todo;
 
-    new_todo.title = input.value;
+    if (!input.value == "") {
+      new_todo.title = input.value;
 
-    todos.splice(todos.indexOf(todo), 1, new_todo);
-    localStorage.todos = JSON.stringify(todos);
-    location.reload();
+      todos.splice(todos.indexOf(todo), 1, new_todo);
+      localStorage.todos = JSON.stringify(todos);
+      location.reload();
+    }
   }
 }
 
