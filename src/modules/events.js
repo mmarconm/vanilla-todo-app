@@ -14,6 +14,23 @@ function setTodos() {
     });
 }
 
+function isCompleted(li, btn_checked, todo, todos, e) {
+  const new_todo = todo;
+  if (todo.completed) {
+    new_todo.completed = !todo.completed;
+    todos.splice(todos.indexOf(todo), 1, new_todo);
+    localStorage.todos = JSON.stringify(todos);
+    btn_checked.className = "button is-danger is-pulled-right is-small";
+    location.reload();
+  } else {
+    new_todo.completed = !todo.completed;
+    todos.splice(todos.indexOf(todo), 1, new_todo);
+    localStorage.todos = JSON.stringify(todos);
+    btn_checked.className = "button is-success is-pulled-right is-small";
+    location.reload();
+  }
+}
+
 function updateTodo(element, input, todo, todos, event) {
   if (event.keyCode === 13) {
     const new_todo = todo;
@@ -52,5 +69,6 @@ module.exports = {
   deleteTodo,
   editTodo,
   cancelTodo,
-  setTodos
+  setTodos,
+  isCompleted
 };
