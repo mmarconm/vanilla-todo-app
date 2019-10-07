@@ -1,4 +1,12 @@
 const events = require("./modules/events");
+const date = document.getElementById("date");
+
+const configDate = {
+  year: "numeric",
+  month: "numeric",
+  day: "numeric"
+};
+date.textContent = new Date().toLocaleString("pt-BR", configDate);
 
 const set_todos = document.getElementById("set_todos");
 
