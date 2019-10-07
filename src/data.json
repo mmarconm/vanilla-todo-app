@@ -2,15 +2,5 @@
   { "id": 1, "title": "Ir ao Mercado", "completed": false },
   { "id": 2, "title": "Estudar Php", "completed": true },
   { "id": 3, "title": "Terminar Projetos", "completed": false },
-  { "id": 4, "title": "Reuniao com equipe de Python", "completed": true },
-  {
-    "id": 5,
-    "title": "Ligar para Empresa sobre projeto Alpha",
-    "completed": true
-  },
-  { "id": 6, "title": "Subir aplicacao django na amazon", "completed": false },
-  { "id": 7, "title": "Fazer app usando js, html, css", "completed": false },
-  { "id": 8, "title": "Remover projetos do Heroku", "completed": true },
-  { "id": 9, "title": "Estudar big data usando python", "completed": false },
-  { "id": 10, "title": "TCC da faculdade", "completed": true }
+  { "id": 4, "title": "Reuniao com equipe de Python", "completed": true }
 ]
