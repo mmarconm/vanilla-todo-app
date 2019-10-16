@@ -3,12 +3,12 @@
 ## Bulma framework
 
 ```
-projeto feito manipulando o DOM usando javascript para construir um todo app com CRUD.
-os dados sao salvos no localStorage.
+Projeto feito manipulando o DOM usando Java Script para construir um Todo app com CRUD.
+Os dados são salvos no localStorage.
 ```
 
 ```sh
-# iniciar o projeto, tenha o npm instalando
+# Para iniciar o projeto, tenha o npm instalado
 
 $ npm install
 
