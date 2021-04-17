@@ -14,3 +14,5 @@ $ npm install
 
 $ npm run dev
 ```
+
+![Page](page.gif)
